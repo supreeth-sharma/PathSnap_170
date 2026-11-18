@@ -1,0 +1,72 @@
+{
+  "Logistic Regression": {
+    "family": "Linear / Probabilistic",
+    "cv_macro_f1_mean": 0.7490310107807234,
+    "cv_macro_f1_std": 0.025588927426506584,
+    "cv_top1_acc": 0.6863280804835774,
+    "cv_log_loss": 0.20123524118785313,
+    "test_macro_f1": 0.7838324801838444,
+    "test_top1_acc": 0.7763048016701461,
+    "test_precision": 0.7178163843861307,
+    "test_recall": 0.5177204571668239,
+    "test_log_loss": 0.15821612906642749,
+    "train_time_sec": 0.4652731418609619,
+    "latency_ms_per_1k": 0.13865602844576772
+  },
+  "Decision Tree": {
+    "family": "Tree-based",
+    "cv_macro_f1_mean": 0.8145884338041443,
+    "cv_macro_f1_std": 0.031131052290544466,
+    "cv_top1_acc": 0.6940151657897303,
+    "cv_log_loss": 0.15955206365737848,
+    "test_macro_f1": 0.8693425218042554,
+    "test_top1_acc": 0.794937369519833,
+    "test_precision": 0.784769316286826,
+    "test_recall": 0.7401698647373388,
+    "test_log_loss": 0.10934427558209457,
+    "train_time_sec": 4.534381628036499,
+    "latency_ms_per_1k": 0.0762574559848554
+  },
+  "Random Forest": {
+    "family": "Ensemble",
+    "cv_macro_f1_mean": 0.8177788061117497,
+    "cv_macro_f1_std": 0.02810923818804659,
+    "cv_top1_acc": 0.7153775462596944,
+    "cv_log_loss": 0.1477013236314204,
+    "test_macro_f1": 0.8718454490319418,
+    "test_top1_acc": 0.8079331941544885,
+    "test_precision": 0.8154620853080569,
+    "test_recall": 0.721662996749502,
+    "test_log_loss": 0.10214373321469344,
+    "train_time_sec": 21.679280042648315,
+    "latency_ms_per_1k": 1.1207621820757205
+  },
+  "LightGBM": {
+    "family": "Gradient Boosting",
+    "cv_macro_f1_mean": 0.818422806430199,
+    "cv_macro_f1_std": 0.027427146973650257,
+    "cv_top1_acc": 0.7137218062442845,
+    "cv_log_loss": 0.14859187194926998,
+    "test_macro_f1": 0.8712392368948503,
+    "test_top1_acc": 0.8051148225469729,
+    "test_precision": 0.8057812862781518,
+    "test_recall": 0.7277970011534025,
+    "test_log_loss": 0.10157692837913795,
+    "train_time_sec": 1.2468864917755127,
+    "latency_ms_per_1k": 1.0923758995681783
+  },
+  "MLP Neural Net": {
+    "family": "Neural Network",
+    "cv_macro_f1_mean": 0.8186526360653316,
+    "cv_macro_f1_std": 0.024511751120375614,
+    "cv_top1_acc": 0.7048568152412591,
+    "cv_log_loss": 0.15960369372778377,
+    "test_macro_f1": 0.8705386560212157,
+    "test_top1_acc": 0.8003131524008351,
+    "test_precision": 0.7863167240039951,
+    "test_recall": 0.7429485163049176,
+    "test_log_loss": 0.10422075943725766,
+    "train_time_sec": 48.06234955787659,
+    "latency_ms_per_1k": 0.3010392308037575
+  }
+}
