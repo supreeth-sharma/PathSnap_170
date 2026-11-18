@@ -1,11 +1,11 @@
-# 🗺️ PathSnap: Distributed Map-Matching & Route Reconstruction
+# PathSnap: Distributed Map-Matching & Route Reconstruction
 
 **Team 170 | Machine Learning (UE24CS352A) Hackathon**  
 *PES University — Department of Computer Science and Engineering*
 
 ---
 
-## 📌 What is PathSnap?
+## What is PathSnap?
 
 When you drive through a city, tall buildings, tunnels, and trees cause GPS signals to bounce around and drift. A GPS ping might look like it's inside a building, in an oncoming lane, or on a parallel service road.
 
@@ -15,7 +15,7 @@ The entire system is deployed across a **two-laptop distributed setup** over Wi-
 
 ---
 
-## 👥 Team Members & Roles
+## Team Members & Roles
 
 | Member Name | SRN | Core Role | What They Built |
 | :--- | :--- | :--- | :--- |
@@ -26,7 +26,7 @@ The entire system is deployed across a **two-laptop distributed setup** over Wi-
 
 ---
 
-## ⚙️ How It Works (In 3 Simple Steps)
+## How It Works (In 3 Simple Steps)
 
 ```
 [ Raw Jittery GPS ] ──▶ [ 1. Spatial Search ] ──▶ [ 2. ML Scoring ] ──▶ [ 3. HMM Decoder ] ──▶ [ 100% Connected Route ]
@@ -41,7 +41,7 @@ The entire system is deployed across a **two-laptop distributed setup** over Wi-
 
 ---
 
-## 🚀 How to Run the Project
+## How to Run the Project
 
 ### 1. Installation
 Clone the repository and install the dependencies:
@@ -69,7 +69,7 @@ pip install -r requirements.txt
    * Enter Laptop 1's IP address (e.g., `10.20.201.76`) and port `8000`.
    * Click **Check API Status** (turns green when connected).
    * Pick any trip from the dropdown (e.g., `00000015` or `00000065`).
-   * Click **🚀 Reconstruct Route**.
+   * Click **Reconstruct Route**.
 
 *(Note: If running both on a single laptop for testing, leave the IP as `127.0.0.1`)*
 
@@ -89,17 +89,17 @@ pip install -r requirements.txt
 
 ---
 
-## 📊 Key Results at a Glance
+## Key Results
 
 * **Candidate Miss Rate:** Reduced from **32.6% to 0.00%** using our 25m segment-sampled index.
 * **Winning Model (LightGBM):** **80.54%** observation-level top-1 accuracy, **0.1011** log loss, and **0.45 ms** inference latency.
 * **HMM Route Continuity:** **100.0%** continuous (0 broken jumps across all evaluation trips).
 * **Overall PathSnap Accuracy:** **96.88%** after sequential Viterbi decoding.
-* **Latency:** **~0.12 ms per GPS point** (~310 ms per 2,500-point trip), beating the real-time requirement by over 400x.
+* **Latency:** **~0.120 ms per GPS point** (~3100 ms per 2,500-point trip), beating the real-time requirement by over 40x.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 PathSnap_170/
@@ -119,7 +119,7 @@ PathSnap_170/
 
 ---
 
-## 📄 Deliverables
+## Deliverables
 
-* **Source Code:** Public GitHub repository: [https://github.com/supreeth-sharma/PathSnap_170](https://github.com/supreeth-sharma/PathSnap_170)
-* **Technical Report:** 12-page comprehensive report in `report.pdf` (pure black text, Times New Roman, all required figures, tables, and live UI/server screenshots).
+* **Source Code:** Public GitHub repository: [https://github.com/supreeth-sharma/PathSnap_170]
+* **Technical Report:** 12-page comprehensive report in `report.pdf'
