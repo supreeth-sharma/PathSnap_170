@@ -55,7 +55,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown('<div class="main-header">PathSnap: Distributed Map-Matching & Route Reconstruction</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-header">Real-Time Trajectory Map-Matching & Evaluation Dashboard</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-header">PathSnap_170 ...</div>', unsafe_allow_html=True)
+
 # Sidebar Configuration
 st.sidebar.header("🌐 Distributed Connection")
 st.sidebar.markdown("Configure Laptop 1 API host & port:")
@@ -78,13 +79,26 @@ if st.sidebar.button("🔍 Check API Status"):
 st.sidebar.markdown("---")
 st.sidebar.header("🚘 Evaluation Trip Selection")
 
-# 10 Reserved Student-Test Evaluation Trips
-EVAL_TRIPS = [
+# Evaluator Test Dataset Trips (prioritized) + Student Test Trips
+DEFAULT_EVAL_TRIPS = [
+    "00000015", "00000017", "00000023", "00000030", "00000049",
+    "00000059", "00000067", "00000073", "00000087", "00000094",
     "00000000", "00000007", "00000009", "00000040", "00000052",
     "00000056", "00000065", "00000076", "00000077", "00000091"
 ]
 
-selected_trip = st.sidebar.selectbox("Select Trip ID", EVAL_TRIPS, index=0)
+# Fetch dynamically from Laptop 1 API if available
+trips_list = DEFAULT_EVAL_TRIPS
+try:
+    r_trips = requests.get(f"{base_url}/trips", timeout=1.5)
+    if r_trips.status_code == 200:
+        api_trips = r_trips.json().get("available_trips", [])
+        if api_trips:
+            trips_list = api_trips
+except Exception:
+    pass
+
+selected_trip = st.sidebar.selectbox("Select Trip ID", trips_list, index=0)
 
 run_btn = st.sidebar.button("🚀 Reconstruct Route", type="primary", use_container_width=True)
 
@@ -103,6 +117,7 @@ if run_btn or 'last_result' in st.session_state:
                     st.stop()
             except Exception as e:
                 st.error(f"Failed to communicate with Laptop 1 API: {str(e)}")
+                st.info("Tip: Ensure `python -m src.service.api` is running on Laptop 1 and accessible via local Wi-Fi.")
                 st.stop()
                 
     data = st.session_state.get('last_result', {})
@@ -162,4 +177,4 @@ if run_btn or 'last_result' in st.session_state:
         st.write(f"First 20 Predicted Arcs: `{data.get('predicted_arcs', [])[:20]}`")
         st.json(metrics)
 else:
-    st.info("Select a trip form the side bar and click 'Reconstruct Route' meow")
+    st.info("👈 Select one of the 10 evaluation trips from the sidebar and click **'Reconstruct Route'** to run live inference across the distributed network.")

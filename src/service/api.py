@@ -24,7 +24,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
-BASE_DATA_DIR = os.path.join(os.path.dirname(__file__), "../../Student folder")
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+BASE_DATA_DIR = os.path.join(ROOT_DIR, "Student folder")
+EVALUATOR_DATA_DIR = os.path.join(ROOT_DIR, "evaluator_test")
 
 class TripRequest(BaseModel):
     trip_id: str
@@ -47,9 +49,17 @@ class ReconstructionResponse(BaseModel):
     geojson: GeoJSONResponse
 
 def find_trip_files(trip_id: str) -> Dict[str, str]:
-    """Locate trip files in student_test or train directories."""
-    for partition in ["student_test", "train"]:
-        tdir = os.path.join(BASE_DATA_DIR, partition, trip_id)
+    """Locate trip files in evaluator_test, student_test, or train directories."""
+    candidate_dirs = [
+        EVALUATOR_DATA_DIR,
+        os.path.join(BASE_DATA_DIR, "evaluator_test"),
+        os.path.join(BASE_DATA_DIR, "student_test"),
+        os.path.join(BASE_DATA_DIR, "train"),
+    ]
+    for pdir in candidate_dirs:
+        if not os.path.exists(pdir):
+            continue
+        tdir = os.path.join(pdir, trip_id)
         track_f = os.path.join(tdir, f"{trip_id}.track")
         nodes_f = os.path.join(tdir, f"{trip_id}.nodes")
         arcs_f = os.path.join(tdir, f"{trip_id}.arcs")
@@ -57,7 +67,7 @@ def find_trip_files(trip_id: str) -> Dict[str, str]:
         
         if os.path.exists(track_f) and os.path.exists(nodes_f) and os.path.exists(arcs_f):
             return {
-                'partition': partition,
+                'partition': os.path.basename(pdir),
                 'track': track_f,
                 'nodes': nodes_f,
                 'arcs': arcs_f,
@@ -76,10 +86,24 @@ def health_check():
 
 @app.get("/trips")
 def list_available_trips():
-    """List available evaluation trips on Laptop 1."""
+    """List available evaluation trips on Laptop 1 (evaluator_test prioritized)."""
+    trips = []
+    # Check evaluator_test first
+    for pdir in [EVALUATOR_DATA_DIR, os.path.join(BASE_DATA_DIR, "evaluator_test")]:
+        if os.path.exists(pdir):
+            t_list = sorted([d for d in os.listdir(pdir) if os.path.isdir(os.path.join(pdir, d))])
+            if t_list:
+                trips.extend(t_list)
+                break
+    # Also check student_test
     test_dir = os.path.join(BASE_DATA_DIR, "student_test")
-    trips = sorted([d for d in os.listdir(test_dir) if os.path.isdir(os.path.join(test_dir, d))])
-    return {"available_trips": trips}
+    if os.path.exists(test_dir):
+        trips.extend(sorted([d for d in os.listdir(test_dir) if os.path.isdir(os.path.join(test_dir, d))]))
+    
+    # Remove duplicates preserving order
+    seen = set()
+    unique_trips = [t for t in trips if not (t in seen or seen.add(t))]
+    return {"available_trips": unique_trips}
 
 @app.post("/reconstruct_trip", response_model=ReconstructionResponse)
 def api_reconstruct_trip(req: TripRequest):
