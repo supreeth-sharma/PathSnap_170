@@ -1,0 +1,42 @@
+[
+  {
+    "trip_id": "00000001",
+    "points_count": 1315,
+    "midpoint_miss_pct": 32.623574144486696,
+    "midpoint_avg_cands": 7.5673003802281364,
+    "sampled_miss_pct": 0.0,
+    "sampled_avg_cands": 12.138403041825095
+  },
+  {
+    "trip_id": "00000002",
+    "points_count": 7243,
+    "midpoint_miss_pct": 15.32514151594643,
+    "midpoint_avg_cands": 9.117216622946293,
+    "sampled_miss_pct": 11.983984536794146,
+    "sampled_avg_cands": 11.746237746790005
+  },
+  {
+    "trip_id": "00000003",
+    "points_count": 821,
+    "midpoint_miss_pct": 19.61023142509135,
+    "midpoint_avg_cands": 18.644336175395857,
+    "sampled_miss_pct": 0.0,
+    "sampled_avg_cands": 24.453105968331304
+  },
+  {
+    "trip_id": "00000004",
+    "points_count": 1064,
+    "midpoint_miss_pct": 28.195488721804512,
+    "midpoint_avg_cands": 4.6306390977443606,
+    "sampled_miss_pct": 0.0,
+    "sampled_avg_cands": 7.56203007518797
+  },
+  {
+    "trip_id": "00000005",
+    "points_count": 1045,
+    "midpoint_miss_pct": 35.119617224880386,
+    "midpoint_avg_cands": 1.4746411483253588,
+    "sampled_miss_pct": 0.0,
+    "sampled_avg_cands": 2.9971291866028706
+  }
+]

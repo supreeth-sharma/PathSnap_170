@@ -1,0 +1,16 @@
+{
+  "train_trips_processed": 25,
+  "test_trips_processed": 10,
+  "train_total_candidates": 532777,
+  "test_total_candidates": 209347,
+  "train_class_balance": {
+    "positives": 59350,
+    "negatives": 473427,
+    "pos_pct": 11.139745146656105
+  },
+  "test_class_balance": {
+    "positives": 19074,
+    "negatives": 190273,
+    "pos_pct": 9.111188600744219
+  }
+}

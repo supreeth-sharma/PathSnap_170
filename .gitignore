@@ -1,0 +1,20 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+env/
+venv/
+ENV/
+.env
+
+# Large Raw Dataset (Kept local, excluded from GitHub)
+Student folder/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
